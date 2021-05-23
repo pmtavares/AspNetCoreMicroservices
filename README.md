@@ -82,3 +82,19 @@ services:
  
   * Remove dockers image:
  > docker-compose -f docker-compose.yml -f docker-compose.override.yml download
+ 
+ 
+### Basket Project
+
+#### Redis
+* Go to docker hub and look for redis image, then open cmd and execute: docker pull redis
+* Run the image: docker run -d -p 6379:6379 --name aspnetrun-redis redis
+* Go inside the container: docker exec -it aspnetrun-redis /bin/bash
+* In order to type redis commands type: redis-cli. Then to test type: set name "anything", then type: get name
+
+ ** For the context file, we have to add redis from nuget packages: 
+ * Microsoft.Extensions.Caching.StackExchangeRedis 5.0.1
+ * Installed Newtonsoft.json 13.0.1
+
+
+ * After, create a docker for the basket project (same process as catalog)
