@@ -82,3 +82,29 @@ services:
  
   * Remove dockers image:
  > docker-compose -f docker-compose.yml -f docker-compose.override.yml download
+ 
+ 
+### Basket Project
+
+#### Redis
+* Go to docker hub and look for redis image, then open cmd and execute: docker pull redis
+* Run the image: docker run -d -p 6379:6379 --name aspnetrun-redis redis
+* Go inside the container: docker exec -it aspnetrun-redis /bin/bash
+* In order to type redis commands type: redis-cli. Then to test type: set name "anything", then type: get name
+
+ ** For the context file, we have to add redis from nuget packages: 
+ * Microsoft.Extensions.Caching.StackExchangeRedis 5.0.1
+ * Installed Newtonsoft.json 13.0.1
+
+
+ * After, create a docker for the basket project (same process as catalog)
+
+#### Add Redis to docker compose: 
+* Right click: Add - Container orchestration support. Target OS is Linux
+ 1 - Add 'redis' image on docker-compose.yml file;
+ 2 - Change docker-compose.override.yml to add basket in it (see file)
+ 3 - After above, go to the folder where docker-compose is, open cmd and check what containers are running and stop them: docker stop [name(2 first characteres)]
+ 4 - Execute the command: docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+ 5 - Check urls: http://localhost:8001/swagger/index.html, we will see the basket api
+ 
+Execute: docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
