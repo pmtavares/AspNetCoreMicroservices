@@ -98,3 +98,13 @@ services:
 
 
  * After, create a docker for the basket project (same process as catalog)
+
+#### Add Redis to docker compose: 
+* Right click: Add - Container orchestration support. Target OS is Linux
+ 1 - Add 'redis' image on docker-compose.yml file;
+ 2 - Change docker-compose.override.yml to add basket in it (see file)
+ 3 - After above, go to the folder where docker-compose is, open cmd and check what containers are running and stop them: docker stop [name(2 first characteres)]
+ 4 - Execute the command: docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+ 5 - Check urls: http://localhost:8001/swagger/index.html, we will see the basket api
+ 
+Execute: docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
